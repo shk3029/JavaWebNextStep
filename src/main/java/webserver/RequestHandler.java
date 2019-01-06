@@ -24,26 +24,30 @@ public class RequestHandler extends Thread {
             // TODO 사용자 요청에 대한 처리는 이 곳에 구현하면 된다.
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in,"UTF-8"));
 
-            String line = null;
-            while((line = bufferedReader.readLine()) != null) {
 
-                String[] tokens = line.split(" ");
-                String url = tokens[1];
-                byte[] body = null;
-                if(url.equals("/")) {
-                    body = "Hello World Index".getBytes();
-                } else {
-                    body = Files.readAllBytes(new File("./webapp" + url).toPath());
-                }
-                DataOutputStream dos = new DataOutputStream(out);
+            //String line = null;
+            String line = bufferedReader.readLine();
+            log.debug("request line : {}", line);
+            if(line == null) return;
 
-                response200Header(dos, body.length);
-                responseBody(dos, body);
-                if(line == null) return;
+            String[] tokens = line.split(" ");
+            String url = tokens[1];
+            byte[] body = null;
+
+            while(!line.equals("")) {
+                line = bufferedReader.readLine();
+                log.debug("header : {} ", line );
             }
 
-
-        } catch (IOException e) {
+            DataOutputStream dos = new DataOutputStream(out);
+            if(url.equals("/")) {
+                body = "Hello World Index".getBytes();
+            } else {
+                body = Files.readAllBytes(new File("./webapp" + url).toPath());
+            }
+            response200Header(dos, body.length);
+            responseBody(dos, body);
+            } catch (IOException e) {
             log.error(e.getMessage());
         }
     }
