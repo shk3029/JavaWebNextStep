@@ -3,13 +3,26 @@ package util;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Map;
 
 import org.junit.Test;
 
 import util.HttpRequestUtils.Pair;
+import webserver.HttpRequest;
 
 public class HttpRequestUtilsTest {
+    private String testDirectory = "./src/test/resources/";
+
+
+    @Test
+    public void request_GET() throws Exception {
+        InputStream in = new FileInputStream(new File(testDirectory + "Http_GET.txt"));
+        HttpRequest request = new HttpRequest(in);
+    }
+
     @Test
     public void parseQueryString() {
         String queryString = "userId=javajigi";

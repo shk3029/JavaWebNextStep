@@ -42,7 +42,7 @@ public class RequestHandler extends Thread {
 
             Map<String, String> headerMap = new HashMap<>();
             boolean logined = false;
-            while(!line.equals("")) {
+            while(! line.equals("")) {
                 log.debug("header : {} ", line );
                 line = bufferedReader.readLine();
                 String[] headerTokens = line.split(":");

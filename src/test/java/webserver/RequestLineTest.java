@@ -1,0 +1,30 @@
+package webserver;
+
+import org.junit.Test;
+
+import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
+
+public class RequestLineTest {
+    @Test
+    public void 메소드생성() {
+        RequestLine line = new RequestLine("GET /index.html HTTP/1.1");
+        assertEquals("GET", line.getMethod());
+        assertEquals("/index.html", line.getPath());
+
+        line = new RequestLine("POST /index.html HTTP/1.1");
+        assertEquals("/index.html", line.getPath());
+    }
+
+    @Test
+    public void 파라미터() {
+        RequestLine line = new RequestLine("GET /user/create?userId=javajigi&password=pass HTTP/1.1");
+        assertEquals("GET" , line.getMethod());
+        assertEquals("/user/create", line.getPath());
+        Map<String,String> params = line.getParamMap();
+        assertEquals(2, params.size());
+        assertEquals("javajigi", params.get("userId"));
+        assertEquals("pass", params.get("password"));
+    }
+}
