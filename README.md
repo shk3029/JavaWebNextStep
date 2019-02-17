@@ -1,4 +1,4 @@
-# 자바 웹 프로그래밍 Next Step
+# 자바 웹 프로그래밍 Next Step (2019/1/1 ~)
 ~~~
 1. 실습을 위한 개발 환경 세팅
 * https://github.com/slipp/web-application-server 프로젝트를 자신의 계정으로 Fork한다. Github 우측 상단의 Fork 버튼을 클릭하면 자신의 계정으로 Fork된다.
